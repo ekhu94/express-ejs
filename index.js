@@ -10,10 +10,20 @@ app.listen(3000, () => {
 });
 
 app.get("/", (req, res) => {
-  res.render("index");
+  res.render("index", { title: "Home" });
 });
 
-app.get("/random", (req, res) => {
+app.get("/rand", (req, res) => {
   const rand = Math.floor(Math.random() * 100) + 1;
-  res.render("random", { rand });
+  res.render("random", { rand, title: "Random Number" });
+});
+
+app.get("/r/:subreddit", (req, res) => {
+  const { subreddit } = req.params;
+  res.render("subreddit", { subreddit, title: subreddit });
+});
+
+app.get("/yakuza", (req, res) => {
+  const lieutenants = ["Daisaku Kuze", "Awano Hiroki", "Shibusawa Keiji"];
+  res.render("yakuza", { title: "Yakuza", lieutenants });
 });
